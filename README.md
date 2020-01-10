@@ -1,8 +1,8 @@
-# AD_ANN
+# Artificial Neural Networks for Anomaly detection (AD_ANN)
 
-Here we provide tools for using Artificial Neural Networks (ANN) for detecting anomalies in high-frequency water-quality data. Latter tool could be also applied to to numerous applications for detecting anomalies in time-series data using ANNs. To do so, we applied Recurrent Neural Networks (RNN) as a particular case of ANNs which is designed to handle sequence-dependent strings of data. In particular, the Long Short-Term Memory networks (LSTM) are a type of RNN commonly used in deep learning for time-series forescasting and are specially useful dut to include memory during the learning process. To do so we applied the keras   
+Here we provide tools for using **Artificial Neural Networks** (ANN) for detecting anomalies in high-frequency water-quality data. Latter tool could be also applied to to numerous applications for detecting anomalies in time-series data using ANNs. To do so, we applied Recurrent Neural Networks (RNN) as a particular case of ANNs which is designed to handle sequence-dependent strings of data. In particular, the **Long Short-Term Memory networks** (LSTM) are a type of RNN commonly used in deep learning for time-series forescasting and are specially useful dut to include memory during the learning process. To do so we applied the keras   
 
-Given the large number of hyper-parameters to be tested in each ANN model, we tuned ANN models using a sampling optimization methods based on **Bayesian optimization**. Here we applied the toolbox [mlrMBO](https://mlrmbo.mlr-org.com/) implemented in R, which provide excellent performance for expensive optimization scenarios for single- and multi-objective tasks, with continuous or mixed parameter spaces.
+Given the large number of hyper-parameters values to be tested to get the best model performance, we tuned ANN models using a sampling optimization methods based on **Bayesian optimization**. Here we applied the toolbox [mlrMBO](https://mlrmbo.mlr-org.com/) implemented in R, which provide excellent performance for expensive optimization scenarios for single- and multi-objective tasks, with continuous or mixed parameter spaces.
 
 
 ## Getting Started
@@ -35,9 +35,22 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Running a single model fitting
 
-Explain how to run the automated tests for this system
+First load data for the selected locality. Here We provide an example of Turbidity data log-transformed (*data_vars*). It also includes labelled anomalies (*data_label*) and the types of anomalies (*data_type*), if available. Finally we provide an array defining the sequence of the sliding window (*sld_window.seq*) which defines the lenght of the matrix (in number of colums) of the time-series dataset.
+
+```
+load("sandyTur_data.RData")
+model_name <- "sandyTur"
+```
+
+Second load user-defined functions for Anomaly detection in time-series using ANN. It includes functions both for semi-supervised (*uRNN_fit*) and supervised (*sRNN_fit*) classification. In addition there is a number of auxiliary functions to re-shape the data during model fitting.
+
+```
+source("AD_fitFuns.R") # Install libraries needed to run scripts
+source("AD_performance.R")
+```
+
 
 ### Break down into end to end tests
 
